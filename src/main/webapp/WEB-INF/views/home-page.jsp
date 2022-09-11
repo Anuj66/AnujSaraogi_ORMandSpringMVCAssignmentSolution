@@ -2,10 +2,11 @@
 
 <jsp:include page="header.jsp"/>
 
+<div class="d-flex justify-content-center my-2">
+	<h1>List of Customers</h1>
+</div>
 
-<h1>List of Customers</h1>
-
-<div>
+<div class="container d-flex justify-content-center my-2">
 	<table class="table">
 	  <thead>
 	    <tr class="table-active">
