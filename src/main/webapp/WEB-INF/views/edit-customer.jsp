@@ -1,14 +1,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 
-<jsp:include page="navbar.jsp"/>
+<jsp:include page="navbar.jsp" />
 
 <div class="container">
 	<br>
-	<h3>Add Customer</h3>
-	<form:form action="/CustomerRelationshipManagement/processForm" modelAttribute="customer">
+	<h3 class="my-2">Update Customer</h3>
+	<form:form action="/CustomerRelationshipManagement/editForm"
+		modelAttribute="customer">
 		<br>
+		<form:input path="id" type="hidden" />
 		<div class="container">
 			<div class="row">
 				<div class="col-sm">
@@ -30,11 +32,12 @@
 				<div class="col-sm"></div>
 			</div>
 		</div>
-		<br>
-		<input type="submit" class="btn btn-primary mx-3" value="Save" />
+
+		<input type="submit" class="btn btn-primary mx-3" value="Update" />
 	</form:form>
-	<br>
-	<a href="/CustomerRelationshipManagement/"><button class="btn btn-secondary mx-3">Back to List</button></a>
+	<br> <a href="/CustomerRelationshipManagement/">
+		<button class="btn btn-secondary mx-3">Back to List</button>
+	</a>
 </div>
 
 <jsp:include page="footer.jsp" />

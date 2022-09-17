@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -43,6 +44,19 @@ public class CustomerDAO {
 		jdbcTemplate = new JdbcTemplate(DBConfig.getDatabaseConnection());
 		String query = "Insert into customer (firstName, lastName, email) values(?,?,?)";
 		jdbcTemplate.update(query, customer.getFirstName(), customer.getLastName(), customer.getEmail());
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Customer getCustomerById(int id) {
+		jdbcTemplate = new JdbcTemplate(DBConfig.getDatabaseConnection());
+		String query = "select * from customer where id=?";
+		return (Customer)jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(Customer.class));
+	}
+	
+	public void updateCustomerById(Customer customer) {
+		jdbcTemplate = new JdbcTemplate(DBConfig.getDatabaseConnection());
+		String query = "update customer set firstName=?, lastName=?, email=? where id=?";
+		jdbcTemplate.update(query, customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getId());
 	}
 	
 }

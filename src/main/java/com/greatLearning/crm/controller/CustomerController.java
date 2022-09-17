@@ -47,5 +47,20 @@ public class CustomerController {
 		model.addAttribute("customers", customers);
 		return "home-page";
 	}
+	
+	@RequestMapping("/editCustomer/{id}")
+	public String editCustomer(Model model, @PathVariable int id) {
+		Customer customer = customerService.getCustomerById(id);
+		model.addAttribute("customer", customer);
+		return "edit-customer";
+	}
+	
+	@RequestMapping("/editForm")
+	public String editForm(@ModelAttribute Customer customer, Model model) {
+		customerService.updateCustomer(customer);
+		List<Customer> customers = customerService.listCustomers();
+		model.addAttribute("customers", customers);
+		return "home-page";
+	}
 
 }
