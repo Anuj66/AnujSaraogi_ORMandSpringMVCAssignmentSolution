@@ -2,10 +2,17 @@ package com.greatLearning.crm.model;
 
 public class Customer {
 	
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -27,7 +34,7 @@ public class Customer {
 	
 	@Override
 	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
 }

@@ -17,5 +17,13 @@ public class CustomerService {
 	public List<Customer> listCustomers() {
 		return customerDAO.listCustomers();
 	}
+	
+	public void deleteCustomer(int id) {
+		customerDAO.deleteCustomer(id);
+	}
+	
+	public void addCustomer(Customer customer) {
+		customerDAO.addCustomer(customer);
+	}
 
 }

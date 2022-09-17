@@ -23,6 +23,7 @@ public class CustomerDAO {
 		List<Customer> customers = jdbcTemplate.query(query, new RowMapper() {
 			public Customer mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 				Customer customer = new Customer();
+				customer.setId(resultSet.getInt("id"));
 				customer.setFirstName(resultSet.getString("firstName"));
 				customer.setLastName(resultSet.getString("lastName"));
 				customer.setEmail(resultSet.getString("email"));
@@ -30,6 +31,18 @@ public class CustomerDAO {
 			}
 		});
 		return customers;
+	}
+	
+	public void deleteCustomer(int id) {
+		jdbcTemplate = new JdbcTemplate(DBConfig.getDatabaseConnection());
+		String query = "delete from customer where id=?";
+		jdbcTemplate.update(query, id);
+	}
+	
+	public void addCustomer(Customer customer) {
+		jdbcTemplate = new JdbcTemplate(DBConfig.getDatabaseConnection());
+		String query = "Insert into customer (firstName, lastName, email) values(?,?,?)";
+		jdbcTemplate.update(query, customer.getFirstName(), customer.getLastName(), customer.getEmail());
 	}
 	
 }

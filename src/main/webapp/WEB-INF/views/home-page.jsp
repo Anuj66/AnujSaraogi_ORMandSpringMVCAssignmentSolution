@@ -22,11 +22,28 @@
 	  			<td>${ index.firstName }</td>
 	  			<td>${ index.lastName }</td>
 	  			<td>${ index.email }</td>
-	  			<td>TBD</td>
+	  			<td>
+	  				<input type="hidden" value="${index.email}" id="customerEmail"/>
+	  				<button onclick="deleteCustomer(${index.id})"><i class="fa-solid fa-trash"></i></button>
+	  			</td>
 	  		</tr>
 	  	</c:forEach>
 	  </tbody>
 	</table>	
 </div>
+<div class="container">
+	<br>
+	<a href="/CustomerRelationshipManagement/addCustomer"><button class="btn btn-primary" onclick="addCustomer()">Add a customer</button></a>
+</div>
+
+<script>
+	function deleteCustomer(id) {
+		const email = document.getElementById("customerEmail").value
+		const confirmation = confirm("Are you sure you want to delete the customer : " + email)
+		if(confirmation) {
+				window.location.assign("/CustomerRelationshipManagement/deleteUser/" + id)
+		}
+	}
+</script>
 
 <jsp:include page="footer.jsp" />
